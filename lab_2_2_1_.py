@@ -23,7 +23,7 @@ if a != 0:
         print("два корня")
         x1 = ((-b + d) / 2*a)
         x2 = ((-b - d) / 2*a)
-        print(f'x1= {x1}, x2= {x2}')
+        print(f'x1= {x1} x2= {x2}')
 
   elif b == 0:
     print("Неполное кв. ур")
@@ -42,6 +42,6 @@ if a != 0:
     print("2 Корня")
     x1 = 0
     x2 = -b / a
-    print("x1=", x1, "x2=", x2)
+    print(f'x1= {x1} x2= {x2}')
 else:
   print("невозможно")
