@@ -33,7 +33,7 @@ if a != 0:
 
     else:
       print("2 Корня")
-      x1 = sqrt(-c / a)
+      x1 = (-c / a)
       x2 = -x1
       print("x1=", x1, "x2=", x2)
 
