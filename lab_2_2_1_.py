@@ -8,7 +8,7 @@ if a != 0:
     print(f'x = {0}')
  
   elif  b !=0 and c != 0:
-    d = b*b - 4*a*c
+    d = b ** 2 - 4*a*c
     print(f'D= {d}')
     
     if d < 0:
@@ -21,8 +21,8 @@ if a != 0:
  
     else:
         print("два корня")
-        x1 = ((-b + d) / 2*a)
-        x2 = ((-b - d) / 2*a)
+        x1 = ((-b + d ** 0.5) / 2*a)
+        x2 = ((-b - d ** 0.5) / 2*a)
         print(f'x1= {x1} x2= {x2}')
 
   elif b == 0:
