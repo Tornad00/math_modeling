@@ -5,7 +5,7 @@ c = float(input('длина третьего отрезка: '))
 if a == b and b == c and a == c:
   print('Равносторонний')
 
-elif a == b and b == c or a == c and c == b 
+elif a == b and b == c or a == c and c == b: 
   print('Равнобедеренный')
 
 elif a != b and a != c and b != c:
