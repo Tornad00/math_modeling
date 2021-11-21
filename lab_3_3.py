@@ -6,5 +6,7 @@ y = float(input("введите значение Y0 = "))
 v = float(input("введите значение V0 = "))
 
 
-while t :
+for t in range(6):
   x = x + v * t
+  y = y + v * t - (co.g * t ** 2 / 2)
+  print(f't = {t} x = {x} y = {y}')
