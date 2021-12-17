@@ -1,6 +1,7 @@
 import const as ct 
 import numpy as np 
 
-v0 = input("введите скорость с которой бросили мяч ")
-h = input("введите на какую высоту кинули мяч ")
-
+def name_en(v, h, m):
+  E = m * v ** 2 / 2 + m * ct.g * h
+  print(E)
+name_en(4, 9, 3)
