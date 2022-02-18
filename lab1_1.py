@@ -1,20 +1,17 @@
-import numpy as np
-from scipy.integrate import odeint
 import matplotlib.pyplot as plt
+import numpy as np
 
-t = np.arrange(0, 10 ** 6, 100)
+f='Цикл.(c) или астр.(a)'
 
-def razm_fuction(a, t):
-  a = k * p
-  return kol
-
-p = 2
-k = 2
-
-razm = odeint(razm_fuction, p, t)
-plt. plot(t, razm[:, 0], label = 'число бактерий')
-plt.xlabel ("прошедшее время")
-plt.ylabel ("кол-во бактерий")
-plt.legend
-
-plt.show
+def grf(f,R):
+  if f == 'c':
+    t = np.arange (-4*np.pi, 4*np.pi, 0.01)
+    x = R*(t-np.sin(t))
+    y = R*(1-np.cos(t))
+  elif f == 'a':
+    t = np.arange (-2*np.pi, 2*np.pi, 0.01)
+    x = R*np.cos(t)**3
+    y = R*np.sin(t)**3
+  plt.axis('equal')
+  plt.show()
+grf(f='c',R=3)
