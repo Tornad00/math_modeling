@@ -2,11 +2,11 @@ import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 
-t = np.arange(0, 10, 0.01)
+x = np.arange(0, 10, 0.01)
 
-def diff_func(z, t):
+def diff_func(z, x):
   theta, omega = z
-  dtheta_dt = omega
+  dy_dx = y ** 2 * z 
   domega_d = -b * omega - c * np.sin(theta)
   return dtheta_dt, domega_d
 
@@ -16,7 +16,7 @@ z0 = theta0, omega0
 b = 0.25
 c = 5.0
 
-sol = odeint(diff_func, z0, t)
+sol = odeint(diff_func, z0, x)
 
 plt.plot( sol[:, 1],sol[:, 0], "b", label="theta(omega)")
 
