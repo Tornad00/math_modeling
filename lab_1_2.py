@@ -12,8 +12,6 @@ def move_function(fuk, t):
   dydt = (m - x - y) * k2
   return dxdt, dydt
 
-
-v = 15
 m = 10
 k1 = 0.2
 k2 = 0.5
