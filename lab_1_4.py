@@ -14,7 +14,7 @@ def move_function(z, t):
 
 g = 9.8
 v = 0
-m = 0.5
+m = 250000000
 F = m * g
 g = 9.98
 a = 8000/92.5
