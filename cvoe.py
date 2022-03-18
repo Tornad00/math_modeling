@@ -16,3 +16,4 @@ class Simulation(Framework):
 
 if __name__ == "__main__":
     Simulation().run()
+##pip instal Box2D##
