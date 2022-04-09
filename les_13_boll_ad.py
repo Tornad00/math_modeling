@@ -2,6 +2,7 @@ import numpy as np
 from scipy.integrate import odeint
 import matplotlib.pyplot as plt
 from matplotlib.animation import FuncAnimation
+from random import randint
 
 frames = 365
 second_in_year = 365 * 24 * 60 * 60
