@@ -56,17 +56,17 @@ def move_func(s,t):
           dxdt2, dv_xdt2, dydt2,dv_ydt2,
           dxdt3, dv_xdt3, dydt3,dv_ydt3)
 
-x10 = 0
+x10 = 200
 v_x10 = 0
 y10 = 0
 v_y10 = 0
 
-x20 = 200
+x20 = 0
 v_x20 = 0
 y20 = 0
 v_y20 = 0
 
-x30 = 100
+x30 = 400
 v_x30 = 0
 y30 = 0
 v_y30 = 0
@@ -76,13 +76,13 @@ s0 = (x10, v_x10, y10, v_y10,
       x30, v_x30, y30, v_y30)
 
 m1 = 1
-q1 = 10 ** (-20)
+q1 = 10 ** (20)
 
 m2 = 1
 q2 = 10 ** (-20)
 
 m3 = 1
-q3 = 10 ** 20
+q3 = 10 ** (-20)
 
 G = 6.67 * 10**(-11)
 k = 9 * 10**9
@@ -109,7 +109,7 @@ ani = FuncAnimation(fig,
                  interval=30)
 
 plt.axis('equal')
-edge = 1.5 * x20
+edge = 2 * x30
 ax.set_xlim(-edge, edge)
 ax.set_ylim(-edge, edge)
 

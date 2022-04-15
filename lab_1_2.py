@@ -68,7 +68,7 @@ v_y20 = 0
 
 x30 = 0
 v_x30 = 0
-y30 = 129.2275 * 10**9
+y30 = 129.227 * 10**9
 v_y30 = 0
 
 s0 = (x10, v_x10, y10, v_y10,
@@ -109,7 +109,7 @@ ani = FuncAnimation(fig,
                  interval=30)
 
 plt.axis('equal')
-edge = 1.5 * x20
+edge = 3 * x20
 ax.set_xlim(-edge, edge)
 ax.set_ylim(-edge, edge)
 
