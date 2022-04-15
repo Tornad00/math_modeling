@@ -6,14 +6,13 @@ from matplotlib.animation import FuncAnimation
 frames = 365
 second_in_year = 365 * 24 * 60 * 60
 second_in_day = 24 * 60 * 60 
-years = 2
+years = 5
 t = np.linspace(0, years*second_in_year, frames)
 
 def move_func(s,t):
   (x1, v_x1, y1, v_y1,
    x2, v_x2, y2, v_y2,
-   x3, v_x3, y3, v_y3,
-   x4, v_x4, y4, v_y4) = s
+   x3, v_x3, y3, v_y3) = s
 
   dxdt1 = v_x1
   print(f'dxdt1: {dxdt1}')
@@ -66,16 +65,10 @@ def move_func(s,t):
              + k * q3 * q2 / m3 * (y3 - y2) / ((x3 - x2)**2 + (y3 - y2)**2)**1.5
              + k * q3 * q1 / m3 * (y3 - y1) / ((x3 - x1)**2 + (y3 - y1)**2)**1.5
             )
-  dxdt4 = v_x4
-  dv_xdt4 = - G * m1 * x4 / (x4 ** 2 + y4 ** 2) ** 1.5
-  dydt4 = v_y4
-  dv_ydt4 = - G * m1 * y4 / (x4 ** 2 + y4 ** 2) ** 1.5
 
-  print(f'dv_ydt3: {dv_ydt3}')
   return (dxdt1, dv_xdt1, dydt1,dv_ydt1,
           dxdt2, dv_xdt2, dydt2,dv_ydt2,
-          dxdt3, dv_xdt3, dydt3,dv_ydt3,
-          dxdt4, dv_xdt4, dydt4,dv_ydt4)
+          dxdt3, dv_xdt3, dydt3,dv_ydt3)
 
 x10 = 0
 v_x10 = -4300
@@ -92,15 +85,14 @@ v_x30 = 4000
 y30 = 0
 v_y30 = 0
 
-x40 = 0.387 * 147 * 10 **9
+x40 = -0.5 * 147 * 10 **9
 v_x40 = 0
 y40 = 0
-v_y40 = 0
+v_y40 = -40000
 
 s0 = (x10, v_x10, y10, v_y10,
       x20, v_x20, y20, v_y20,
-      x30, v_x30, y30, v_y30,
-      x40, v_x40, y40, v_y40)
+      x30, v_x30, y30, v_y30)
 
 m1 = 1.06 * 10**30
 q1 = 0
@@ -110,6 +102,9 @@ q2 = 0
 
 m3 = 0.68 * 10**30
 q3 = 0
+
+m4 = 10 ** 24
+q4 = 0
 
 G = 6.67 * 10**(-11)
 k = 9 * 10**9
@@ -121,12 +116,12 @@ fig, ax =plt.subplots()
 balls =[]
 balls_lines = []
 
-for i in range (4):
+for i in range (3):
   balls.append(plt.plot([], [], 'o', color="r"))
   balls_lines.append(plt.plot([], [], '-', color = "r"))
                  
 def animate(i):
-  for j in range (4):
+  for j in range (3):
     balls[j][0].set_data(sol[i, 4*j], sol[i, 4*j+2])
     balls_lines[j][0].set_data(sol[:i, 4*j], sol[:i, 4*j+2])
 
@@ -140,4 +135,4 @@ edge = 1.5 * x20
 ax.set_xlim(-edge, edge)
 ax.set_ylim(-edge, edge)
 
-ani.save("poluchiloc.gif")
+ani.save("lab_1_1.gif")
