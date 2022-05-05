@@ -12,46 +12,53 @@ omega = 0
 fig = plt.figure()
 ax = plt3d.Axes3D(fig)
 
-def nachalo(T, M, R, omega):
-  T = input("Напишите температуру звезды в кельвинах: ")
-  M = input("Напишите массу звезды: ")
-  R = input ("Напишите радиус звезды: ")
-  omega = input("Напишите угловое вращение звезды: ")
-  return (T, M, R, omega)
+
+T = float(input("Напишите температуру звезды в кельвинах: "))
+M = float(input("Напишите массу звезды: "))
+R = float(input("Напишите радиус звезды: "))
+omega = float(input("Напишите угловое вращение звезды: "))
+Msol = 2 * 10
+Rsol = 7 * 10
+
+N = 100
+theta = np.linspace(0, 2*np.pi, 100)  
+phi = np.linspace(0, np.pi, 100)   
+# Параметрическое задание пространственной кривой
+
+x = np.sin(phi)*np.cos(theta)
+y = np.sin(phi)*np.sin(theta)
+z = np.cos(phi)
+
+if M > Msol * 60 and Rsol * 15 and T > 30000:
   
-nachalo(T, M, R, omega)
+  ax.plot_surface(x, y, z, color = "#1CACF4")
 
-fi = np.linspace(0, np.pi, 100)
-Q = np.linspace(0, 2 * np.pi, 100)
-Msol = 1.9885 * 10 ** 30
-Rsol = 6,9551 * 10 ** 8
+elif M > Msol * 18 and M < Msol * 60 and Rsol > 7.5 * Rsol and R < Rsol * 15 and T > 10000:
+  ax.plot_surface(x,y,z, color = "#ACE3E4")
 
-if T > 30000 and M > 60 * Msol and R > 15 * Rsol:
-  x = R * np.outer(np.sin(Q), np.cos(fi))
-  y = R * np.outer(np.sin(Q), np.sin(fi))
-  z = R * np.outer(np.cos(Q), np.ones(np.size(fi)))
+elif M > Msol * 3.1 and M < Msol * 18 and Rsol > 2.1 * Rsol and R < Rsol * 7.5 and T > 7500:
+  ax.plot_surface(x,y,z, color = "#DCECFC")
 
-  ball, = ax.plot(x, y, z, 'o', color='b') # Сферический объект
-  line, = ax.plot(x, y, z, '-', color='b') # Линия
- 
-# Функция подстановки координат в анимируемые объекты
-  def animate(i):
-      ball.set_data(x[:i], y[:i])
-      ball.set_3d_properties(z[:i])
- 
-      line.set_data(x[i], y[i])
-      line.set_3d_properties(z[i])
- 
-# Украшательсвта и масштабирование
-  ax.set_xlim3d([-1.0, 1.0])
-  ax.set_xlabel('X')
- 
-  ax.set_ylim3d([-1.0, 1.0])
-  ax.set_ylabel('Y')
- 
-  ax.set_zlim3d([-1.0, 1.0])
-  ax.set_zlabel('Z')
- 
-  ani = FuncAnimation(fig, animate, N, interval=50)
- 
-  ani.save('Класс О.gif')
+elif M > Msol * 1.7 and M < Msol * 3.1 and Rsol > 1.3 * Rsol and R < Rsol * 2.1 and T > 6000:
+  ax.plot_surface(x,y,z, color = "#FCFC54")
+
+elif M > Msol * 1.1 and M < Msol * 1.7 and Rsol > 1.1 * Rsol and R < Rsol * 1.3 and T > 5200:
+  ax.plot_surface(x,y,z, color = "#F9E506")
+
+elif M > Msol * 0.8 and M < Msol * 1.1 and Rsol > 0.9 * Rsol and R < Rsol * 1.1 and T > 3700:
+  ax.plot_surface(x,y,z, color = "#FC7C1C")
+
+elif M > Msol * 0.3 and M < Msol * 0.8 and Rsol > 0.4 * Rsol and R < Rsol * 0.9 and T > 2700:
+  ax.plot_surface(x,y,z, color = "#DB4C23")
+
+else:
+  print("Иди нафиг")
+ax.set_xlabel('X')
+ax.set_ylabel('Y')
+ax.set_zlabel('Z')
+
+	
+# Подпись графика
+ax.set_title('3D Test')
+
+plt.show()
