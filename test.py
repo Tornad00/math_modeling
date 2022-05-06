@@ -29,7 +29,7 @@ x = R * np.outer(np.sin(Q), np.cos(fi))
 y = R * np.outer(np.sin(Q), np.sin(fi))
 z = R * np.outer(np.cos(Q), np.ones(np.size(fi)))
 
-color1 = [28, 172, 244]
+color1 = [0.109, 0.674, 0.956]
 
 for i in range(N):
   ax.set_xlim3d([-2*R, 2*R])
@@ -65,7 +65,9 @@ for i in range(N):
     print("иди нафиг")
 
   plt.savefig(f'pic_{i}')
-  color[0] += 10
+  color1[0] += 0.03
+  color1[2] += -0.02
+  color1[1] += -0.01
     
 images = []
 filenames = [f'pic_{i}.png' for i in range(N)] 
