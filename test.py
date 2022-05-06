@@ -1,44 +1,75 @@
 import numpy as np
 import matplotlib.pyplot as plt
-from matplotlib import cm, colors
-from mpl_toolkits.mplot3d import Axes3D
-from scipy.special import sph_harm     #import package to calculate spherical harmonics
+import mpl_toolkits.mplot3d.axes3d as plt3d
+import imageio
+import os
 
-theta = np.linspace(0, 2*np.pi, 100)   #setting range for theta
-phi = np.linspace(0, np.pi, 100)       #setting range for phi
-phi, theta = np.meshgrid(phi, theta)   #setting the grid for phi and theta
+# T = float(input('Температура: '))
+# M = float(input("Macca: "))
+# R = float(input("Радиус: "))
+# omega = float(input("Угол: "))
 
-#Setting the cartesian coordinates of the unit sphere
-#Converting phi, theta, z to cartesian coordinates
-x = np.sin(phi)*np.cos(theta)
-y = np.sin(phi)*np.sin(theta)
-z = np.cos(phi)
+T = 50000
+M = 3e35
+R = 7e10
+omega = 10
+N = 10
 
-m, l = 4, 4   #m and l control the mode of pulsation and overall appearance of the figure
+fig = plt.figure()
+ax = plt3d.Axes3D(fig)
 
-#Calculating the spherical harmonic Y(l,m) and normalizing it
-figcolors = sph_harm(m, l, theta, phi).real
-figmax, figmin = figcolors.max(), figcolors.min()
-figcolors = (figcolors-figmin)/(figmax-figmin)
+fi = np.linspace(0, np.pi, 100)
+Q = np.linspace(0, 2 * np.pi, 100)
+Msol = 1.9885 * 10 ** 30
+Rsol = 6.9551 * 10 ** 8
+Msol1 = Msol * 60
+Rsol1 = Rsol * 15
 
-#Setting the aspect ratio to 1 which makes the sphere look spherical and not elongated
-fig = plt.figure(figsize=plt.figaspect(1.))    #aspect ratio
-axes = fig.add_subplot(111, projection='3d')   #sets figure to 3d
+x = R * np.outer(np.sin(Q), np.cos(fi)) 
+y = R * np.outer(np.sin(Q), np.sin(fi))
+z = R * np.outer(np.cos(Q), np.ones(np.size(fi)))
 
-#Sets the plot surface and colors of the figure where seismic is the color scheme
-axes.plot_surface(x, y, z,  rstride=1, cstride=1,  facecolors=cm.autumn(figcolors))
-#yellow zones are cooler and compressed, red zones are warmer and expanded
+color1 = [28, 172, 244]
 
-axes.set_axis_off()
-fig.suptitle('m=4   l=4', fontsize=18, x=0.52, y=.85)
+for i in range(N):
+  ax.set_xlim3d([-2*R, 2*R])
+  ax.set_xlabel('X')
+ 
+  ax.set_ylim3d([-2*R, 2*R])
+  ax.set_ylabel('Y')
+ 
+  ax.set_zlim3d([-2*R, 2*R])
+  ax.set_zlabel('Z')
+  
+  if T > 30000:
+    ax.plot_surface(x, y, z, color = color1)
 
-for idx, angle in enumerate(np.linspace(0, 360, 10)):
+  elif T > 10000 and T < 30000:
+    ax.plot_surface(x,y,z, color = (172, 227, 228))
 
-    axes.view_init(30, angle)
-    plt.draw()
+  elif T > 7500 and T < 10000:
+    ax.plot_surface(x,y,z, color = (220, 236, 252))
 
-    #Turn off the axis planes so only the sphere is visible
+  elif T > 6000 and T < 7500:
+    ax.plot_surface(x,y,z, color = (252, 252, 84))
 
+  elif T > 5200 and T < 6000:
+    ax.plot_surface(x,y,z, color = (249, 229, 6, 1))
 
-    plt.savefig('m4_l4-%04d.png' % idx)          #saves a .png file of my figure
-plt.show()  
+  elif T > 3700 and T < 5200:
+    ax.plot_surface(x,y,z, color = (252, 124, 28, 1))
+
+  elif T > 2700 and T < 3700:
+    ax.plot_surface(x,y,z, color = (219, 76, 35, 1))
+  else: 
+    print("иди нафиг")
+
+  plt.savefig(f'pic_{i}')
+  color[0] += 10
+    
+images = []
+filenames = [f'pic_{i}.png' for i in range(N)] 
+for filename in filenames:
+  images.append(imageio.imread(filename))
+  os.remove(filename)
+imageio.mimsave('movie.gif', images)

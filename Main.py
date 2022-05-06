@@ -17,8 +17,8 @@ T = float(input("Напишите температуру звезды в кел�
 M = float(input("Напишите массу звезды: "))
 R = float(input("Напишите радиус звезды: "))
 omega = float(input("Напишите угловое вращение звезды: "))
-Msol = 2 * 10
-Rsol = 7 * 10
+Msol = 2 * 10 ** 30
+Rsol = 7 * 10 ** 8
 
 N = 100
 Q = np.linspace(0, 2*np.pi, 100)  
@@ -29,27 +29,26 @@ x = R * np.outer(np.sin(Q), np.cos(fi))
 y = R * np.outer(np.sin(Q), np.sin(fi))
 z = R * np.outer(np.cos(Q), np.ones(np.size(fi)))
 
-if M > Msol * 60 and Rsol * 15 and T > 30000:
-  
+if T > 30000:
   ax.plot_surface(x, y, z, color = "#1CACF4")
   print (z)
 
-elif M > Msol * 18 and M < Msol * 60 and Rsol > 7.5 * Rsol and R < Rsol * 15 and T > 10000:
+elif T > 10000:
   ax.plot_surface(x,y,z, color = "#ACE3E4")
 
-elif M > Msol * 3.1 and M < Msol * 18 and Rsol > 2.1 * Rsol and R < Rsol * 7.5 and T > 7500:
+elif T > 7500:
   ax.plot_surface(x,y,z, color = "#DCECFC")
 
-elif M > Msol * 1.7 and M < Msol * 3.1 and Rsol > 1.3 * Rsol and R < Rsol * 2.1 and T > 6000:
+elif T > 6000:
   ax.plot_surface(x,y,z, color = "#FCFC54")
 
-elif M > Msol * 1.1 and M < Msol * 1.7 and Rsol > 1.1 * Rsol and R < Rsol * 1.3 and T > 5200:
+elif T > 5200:
   ax.plot_surface(x,y,z, color = "#F9E506")
 
-elif M > Msol * 0.8 and M < Msol * 1.1 and Rsol > 0.9 * Rsol and R < Rsol * 1.1 and T > 3700:
+elif T > 3700:
   ax.plot_surface(x,y,z, color = "#FC7C1C")
 
-elif M > Msol * 0.3 and M < Msol * 0.8 and Rsol > 0.4 * Rsol and R < Rsol * 0.9 and T > 2700:
+elif T > 2700:
   ax.plot_surface(x,y,z, color = "#DB4C23")
 
 else:
