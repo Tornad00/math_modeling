@@ -21,17 +21,18 @@ Msol = 2 * 10
 Rsol = 7 * 10
 
 N = 100
-theta = np.linspace(0, 2*np.pi, 100)  
-phi = np.linspace(0, np.pi, 100)   
+Q = np.linspace(0, 2*np.pi, 100)  
+fi = np.linspace(0, np.pi, 100)   
 # Параметрическое задание пространственной кривой
 
-x = np.sin(phi)*np.cos(theta)
-y = np.sin(phi)*np.sin(theta)
-z = np.cos(phi)
+x = R * np.outer(np.sin(Q), np.cos(fi))
+y = R * np.outer(np.sin(Q), np.sin(fi))
+z = R * np.outer(np.cos(Q), np.ones(np.size(fi)))
 
 if M > Msol * 60 and Rsol * 15 and T > 30000:
   
   ax.plot_surface(x, y, z, color = "#1CACF4")
+  print (z)
 
 elif M > Msol * 18 and M < Msol * 60 and Rsol > 7.5 * Rsol and R < Rsol * 15 and T > 10000:
   ax.plot_surface(x,y,z, color = "#ACE3E4")
