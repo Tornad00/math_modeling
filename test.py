@@ -13,7 +13,9 @@ T = 50000
 M = 3e35
 R = 7e10
 omega = 10
-N = 40
+N = 65
+O = 2
+r = R/2
 
 fig = plt.figure()
 ax = plt3d.Axes3D(fig)
@@ -36,16 +38,17 @@ color4 = [0.826, 0.862, 0.509]
 color5 = [0.967, 0.898, 0.02]
 color6 = [0.988, 0.486, 0.109]
 color7 = [1, 0.345, 0.345]
+
+ax.set_xlim3d([-14e10, 14e10])
+ax.set_xlabel('X')
  
+ax.set_ylim3d([-14e10, 14e10])
+ax.set_ylabel('Y')
+ 
+ax.set_zlim3d([-14e10, 14e10])
+ax.set_zlabel('Z')
+
 for i in range(N):
-  ax.set_xlim3d([-2*R, 2*R])
-  ax.set_xlabel('X')
- 
-  ax.set_ylim3d([-2*R, 2*R])
-  ax.set_ylabel('Y')
- 
-  ax.set_zlim3d([-2*R, 2*R])
-  ax.set_zlabel('Z')
   
   if T > 30000:
     ax.plot_surface(x, y, z, color = color1)
@@ -69,6 +72,38 @@ for i in range(N):
     ax.plot_surface(x,y,z, color = color7)
   else: 
     print("иди нафиг")
+
+  if O <= 20:
+    x = x * 1.03
+    y = y * 1.03
+    z = z * 1.03
+    R = R * 1.03
+    O += 1
+  elif O >= 21 and O < 34:
+    x = x / 2
+    y = y / 2
+    z = z / 2
+    R = R / 2
+    O += 1 
+  elif O >= 34 and O <= 40:
+    x = x * 50
+    y = y * 50
+    z = z * 50
+    R = R * 50
+    O += 1
+  elif O > 41 and O < 52:
+    x = x * 1e(-40)
+    y = y * 1e(-40)
+    z = z * 1e(-40)
+    R = R * 1e(-40)
+    O += 1
+  elif r > R and O => 52 and O < 65:
+    x = r * np.outer(np.sin(Q), np.cos(fi)) 
+    y = r * np.outer(np.sin(Q), np.sin(fi))
+    z = r * np.outer(np.cos(Q), np.ones(np.size(fi)))
+    R = 3.5e10
+    O += 1
+    
     
   if color1[0] < 0.8: 
     color1[0] += 0.06
@@ -118,6 +153,8 @@ for i in range(N):
     color7[2] += 0.001
   else:
     color7 = [1, 0.1, 0.1]
+
+  
 
   plt.savefig(f'pic_{i}')
   
