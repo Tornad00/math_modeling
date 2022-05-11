@@ -92,12 +92,12 @@ for i in range(N):
     R = R * 50
     O += 1
   elif O > 41 and O < 52:
-    x = x * 1e(-40)
-    y = y * 1e(-40)
-    z = z * 1e(-40)
-    R = R * 1e(-40)
+    x = x * 1e-40
+    y = y * 1e-40
+    z = z * 1e-40
+    R = R * 1e-40
     O += 1
-  elif r > R and O => 52 and O < 65:
+  elif r > R and O >= 52 and O < 65:
     x = r * np.outer(np.sin(Q), np.cos(fi)) 
     y = r * np.outer(np.sin(Q), np.sin(fi))
     z = r * np.outer(np.cos(Q), np.ones(np.size(fi)))
