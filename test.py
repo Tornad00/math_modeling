@@ -13,7 +13,7 @@ T = 50000
 M = 3e35
 R = 7e10
 omega = 10
-N = 10
+N = 40
 
 fig = plt.figure()
 ax = plt3d.Axes3D(fig)
@@ -30,7 +30,13 @@ y = R * np.outer(np.sin(Q), np.sin(fi))
 z = R * np.outer(np.cos(Q), np.ones(np.size(fi)))
 
 color1 = [0.109, 0.674, 0.956]
-
+color2 = [0.67, 0.89, 0.894]
+color3 = [0.94, 1, 1]
+color4 = [0.826, 0.862, 0.509]
+color5 = [0.967, 0.898, 0.02]
+color6 = [0.988, 0.486, 0.109]
+color7 = [1, 0.345, 0.345]
+ 
 for i in range(N):
   ax.set_xlim3d([-2*R, 2*R])
   ax.set_xlabel('X')
@@ -45,30 +51,84 @@ for i in range(N):
     ax.plot_surface(x, y, z, color = color1)
 
   elif T > 10000 and T < 30000:
-    ax.plot_surface(x,y,z, color = (172, 227, 228))
+    ax.plot_surface(x,y,z, color = color2)
 
   elif T > 7500 and T < 10000:
-    ax.plot_surface(x,y,z, color = (220, 236, 252))
+    ax.plot_surface(x,y,z, color = color3)
 
   elif T > 6000 and T < 7500:
-    ax.plot_surface(x,y,z, color = (252, 252, 84))
+    ax.plot_surface(x,y,z, color = color4)
 
   elif T > 5200 and T < 6000:
-    ax.plot_surface(x,y,z, color = (249, 229, 6, 1))
+    ax.plot_surface(x,y,z, color = color5)
 
   elif T > 3700 and T < 5200:
-    ax.plot_surface(x,y,z, color = (252, 124, 28, 1))
+    ax.plot_surface(x,y,z, color = color6)
 
   elif T > 2700 and T < 3700:
-    ax.plot_surface(x,y,z, color = (219, 76, 35, 1))
+    ax.plot_surface(x,y,z, color = color7)
   else: 
     print("иди нафиг")
+    
+  if color1[0] < 0.8: 
+    color1[0] += 0.06
+    color1[2] += -0.0637333333333333
+    color1[1] += -0.0449333333333333
+  else: 
+    color1 = [0.8290000000000002, 0.13480000000000072, 0.19120000000000026]
+
+  if color2[0] < 0.8:
+    color2[0] += 0.01
+    color2[1] -= 0.05
+    color2[2] -= 0.05
+  else:
+    color2 = [0.8290000000000002, 0.13480000000000072, 0.19120000000000026]
+  
+  if color3[1] > 0.2:
+    color3[0] += 0
+    color3[1] -= 0.066
+    color3[2] -= 0.066
+  else:
+    color3 = [0.8290000000000002, 0.13480000000000072, 0.19120000000000026]
+  
+  if color4[1] > 0.2:
+    color4[0] += 0 
+    color4[1] -= 0.057
+    color4[2] -= 0.033
+  else:
+    color4 = [0.8290000000000002, 0.13480000000000072, 0.19120000000000026]
+  
+  if color5[1] > 0.2:
+    color5[0] += 0
+    color5[1] -= 0.59
+    color5[2] += 0
+  else:
+    color5 = [0.967, 0.15, 0.02]
+  
+  if color6[1] > 0.2:
+    color6[0] += 0 
+    color6[1] -= 0.0324
+    color6[2] += 0
+  else:
+    color6 = [0.8290000000000002, 0.13480000000000072, 0.19120000000000026]
+  
+  if color7[1] > 0.1:
+    color7[0] += 0 
+    color7[1] -= 0.001
+    color7[2] += 0.001
+  else:
+    color7 = [1, 0.1, 0.1]
 
   plt.savefig(f'pic_{i}')
-  color1[0] += 0.03
-  color1[2] += -0.02
-  color1[1] += -0.01
-    
+  
+  #print(color1, " ")
+  #print(color2, " ")
+  #print(color3, " ")
+  #print(color4, " ")
+  #print(color5, " ")
+  #print(color6, " ")
+  #print(color7, " ")
+  
 images = []
 filenames = [f'pic_{i}.png' for i in range(N)] 
 for filename in filenames:
