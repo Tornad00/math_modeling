@@ -85,17 +85,17 @@ for i in range(N):
     z = z / 2
     R = R / 2
     O += 1 
-  elif O >= 34 and O <= 40:
-    x = x * 50
-    y = y * 50
-    z = z * 50
-    R = R * 50
-    O += 1
+  #elif O >= 34 and O <= 40:
+    #x = x * 50
+    #y = y * 50
+    #z = z * 50
+    #R = R * 50
+    #O += 1
   elif O > 41 and O < 52:
-    x = x * 1e-40
-    y = y * 1e-40
-    z = z * 1e-40
-    R = R * 1e-40
+    x = x * 0
+    y = y * 0
+    z = z * 0
+    R = R * 0
     O += 1
   elif r > R and O >= 52 and O < 65:
     x = r * np.outer(np.sin(Q), np.cos(fi)) 
