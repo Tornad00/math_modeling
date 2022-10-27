@@ -77,11 +77,13 @@ class Gardener:
     else:
      chance = random.uniform(0.6, 1)
     return chance 
-    print(chance)
+    
     
 
 # -----------------------------------------
-g = Gardener("Bob", random.randint(0, 100))
+skill_0 = random.randint(0, 100)
+print(skill_0)
+g = Gardener("Bob", skill_0)
 b = TomatoBush(random.randint(0, 30), g)
 g.assign_bush(b)
 
